@@ -4,9 +4,9 @@ var Xml2js = require('xml2js');
 
 var VALIDATOR_URL = 'http://validator.w3.org/feed/check.cgi';
 
-var validationProvider = module.exports = function validationProvider(dataJson) {
-    var xml = validationProvider.stringifyXml(dataJson);
-    return validationProvider.makeValidationRequest(xml);
+var feedValidator = module.exports = function feedValidator(dataJson) {
+    var xml = feedValidator.stringifyXml(dataJson);
+    return feedValidator.makeValidationRequest(xml);
 };
 
 /**
@@ -14,7 +14,7 @@ var validationProvider = module.exports = function validationProvider(dataJson) 
  * @param {Object} dataJson
  * @returns {String} XML
  */
-validationProvider.stringifyXml = function (dataJson) {
+feedValidator.stringifyXml = function (dataJson) {
     var builder = new Xml2js.Builder();
     return builder.buildObject(dataJson);
 };
@@ -24,7 +24,7 @@ validationProvider.stringifyXml = function (dataJson) {
  * @param {String} xml
  * @returns {Promise<Object>} Response data as JSON
  */
-validationProvider.makeValidationRequest = function (xml) {
+feedValidator.makeValidationRequest = function (xml) {
     return Http
         .request({
             url: VALIDATOR_URL,

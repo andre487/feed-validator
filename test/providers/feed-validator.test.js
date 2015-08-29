@@ -1,11 +1,11 @@
 var Q = require('q');
 var Http = require('q-io/http');
-var validationProvider = require('../../providers/validation');
+var feedValidator = require('../../providers/feed-validator');
 var _ = require('lodash');
 
-var data = require('./validation.data');
+var data = require('./feed-validator.data');
 
-describe('providers/validation', function () {
+describe('providers/feed-validator', function () {
     var sandbox;
 
     beforeEach(function () {
@@ -18,7 +18,7 @@ describe('providers/validation', function () {
 
     describe('#stringifyXml()', function () {
         it('should stringify correct data', function () {
-            var res = validationProvider.stringifyXml(data.dataJson);
+            var res = feedValidator.stringifyXml(data.dataJson);
             assert.include(res, '<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">');
         });
     });
@@ -27,7 +27,7 @@ describe('providers/validation', function () {
         it('should provide validator response as JSON', function () {
             useFakeValidatorResponse();
 
-            return validationProvider.makeValidationRequest(data.correctXml)
+            return feedValidator.makeValidationRequest(data.correctXml)
                 .then(function (data) {
                     assert.deepPropertyVal(data, 'env:Envelope.env:Body.0.m:feedvalidationresponse.0.m:uri.0',
                         'http://www.w3.org/QA/news.rss');

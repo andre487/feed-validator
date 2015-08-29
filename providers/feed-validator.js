@@ -1,6 +1,13 @@
+/**
+ * @file
+ * Provider for feed validator data
+ * @see https://validator.w3.org/feed/docs/soap.html
+ */
 var Http = require('q-io/http');
 var Q = require('q');
+var thr = require('throw');
 var Xml2js = require('xml2js');
+var _ = require('lodash');
 
 var VALIDATOR_URL = 'http://validator.w3.org/feed/check.cgi';
 
@@ -38,4 +45,32 @@ feedValidator.makeValidationRequest = function (xml) {
         .then(function (body) {
             return Q.nfcall(Xml2js.parseString, body);
         });
+};
+
+/**
+ * Extract important information from validator response
+ * @param {Object} response Validator response JSON representation
+ * @returns {{isValid: Boolean, errors: Object[], warnings: Object[], info: Object[]}}
+ */
+feedValidator.extractSenseFromResponse = function (response) {
+    var container = _.get(response, 'env:Envelope.env:Body.0.m:feedvalidationresponse.0') || thr('No container');
+    var validity = _.get(container, 'm:validity.0');
+
+    function mapItem(item) {
+        return _.transform(item, function (res, arr, name) {
+            var val = arr[0];
+            if (/\d+/.test(val)) {
+                val = Number(val);
+            }
+            res[name] = val;
+            return res;
+        });
+    }
+
+    return {
+        isValid: validity == 'true' || validity == 'false' ? validity == 'true' : null,
+        errors: _.map(_.get(container, 'm:errors.0.m:errorlist.0.error'), mapItem),
+        warnings: _.map(_.get(container, 'm:warnings.0.m:warninglist.0.warning'), mapItem),
+        info: _.map(_.get(container, 'm:informations.0.m:infolist.0.info'), mapItem)
+    };
 };

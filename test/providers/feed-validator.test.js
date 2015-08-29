@@ -35,6 +35,21 @@ describe('providers/feed-validator', function () {
         });
     });
 
+    describe('#extractSenseFromResponse()', function () {
+        it('should throw error when no container', function () {
+            assert.throws(_.partial(feedValidator.extractSenseFromResponse, {}), /No container/);
+        });
+
+        it('should extract errors from JSON representation os SOAP response', function () {
+            var res = feedValidator.extractSenseFromResponse(data.validatorResponseJson);
+
+            assert.propertyVal(res, 'isValid', false);
+            assert.deepPropertyVal(res, 'errors.0.level', 'error');
+            assert.deepPropertyVal(res, 'warnings.0.level', 'warning');
+            assert.deepPropertyVal(res, 'info.0.level', 'info');
+        });
+    });
+
     function useFakeValidatorResponse() {
         sandbox.stub(Http, 'request', function () {
             return Q(_.set({}, 'body.read', _.constant(data.validatorResponse)));

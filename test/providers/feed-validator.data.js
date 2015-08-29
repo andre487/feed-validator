@@ -59,3 +59,73 @@ exports.validatorResponse = '<?xml version="1.0" encoding="UTF-8"?>\n' +
     '</m:feedvalidationresponse>' +
     '</env:Body>' +
     '</env:Envelope>';
+
+exports.validatorResponseJson = {
+    'env:Envelope': {
+        $: {'xmlns:env': 'http://www.w3.org/2003/05/soap-envelope'},
+        'env:Body': [{
+            'm:feedvalidationresponse': [{
+                $: {
+                    'env:encodingStyle': 'http://www.w3.org/2003/05/soap-encoding',
+                    'xmlns:m': 'http://www.w3.org/2005/10/feed-validator'
+                },
+                'm:uri': ['http://www.w3.org/QA/news.rss'],
+                'm:checkedby': ['http://qa-dev.w3.org/feed/check.cgi'],
+                'm:date': ['2005-11-11T11:48:24.491627'],
+                'm:validity': ['false'],
+                'm:errors': [{
+                    'm:errorcount': ['2'],
+                    'm:errorlist': [{
+                        error: [{
+                            level: ['error'],
+                            type: ['MissingDescription'],
+                            line: ['23'],
+                            column: ['0'],
+                            text: ['Missing channel element: description'],
+                            msgcount: ['1'],
+                            backupcolumn: ['0'],
+                            backupline: ['23'],
+                            element: ['description'],
+                            parent: ['channel']
+                        }]
+                    }]
+                }],
+                'm:warnings': [{
+                    'm:warningcount': ['1'],
+                    'm:warninglist': [{
+                        warning: [{
+                            level: ['warning'],
+                            type: ['MissingDescription'],
+                            line: ['23'],
+                            column: ['0'],
+                            text: ['Missing channel element: description'],
+                            msgcount: ['1'],
+                            backupcolumn: ['0'],
+                            backupline: ['23'],
+                            element: ['description'],
+                            parent: ['channel']
+                        }]
+                    }]
+                }],
+                'm:informations': [{
+                    'm:infocount': ['0'],
+                    'm:infolist': [{
+                        info: [{
+                            level: ['info'],
+                            type: ['MissingDescription'],
+                            line: ['23'],
+                            column: ['0'],
+                            text: ['Missing channel element: description'],
+                            msgcount: ['1'],
+                            backupcolumn: ['0'],
+                            backupline: ['23'],
+                            element: ['description'],
+                            parent: ['channel']
+                        }]
+                    }]
+                }]
+            }]
+        }]
+    }
+};
+

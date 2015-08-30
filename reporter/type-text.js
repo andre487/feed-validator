@@ -17,7 +17,9 @@ module.exports = function textReporter(validationData, options) {
 
     function mapItem(item) {
         return [
-            'At line: ' + item.line + ', column: ' + item.column,
+            item.line ?
+                'At line: ' + item.line + ', column: ' + item.column :
+                'At path: ' + item.path,
             item.type,
             item.text
         ].join('\t');
@@ -34,17 +36,17 @@ module.exports = function textReporter(validationData, options) {
         '',
         validationData.errors.length ? [
             prepareString('Errors:', 'red'),
-            _.map(validationData.errors, mapItem),
+            _.map(validationData.errors, mapItem).join('\n'),
             ''
         ] : null,
         validationData.warnings.length ? [
             prepareString('Warnings:', 'blue'),
-            _.map(validationData.warnings, mapItem),
+            _.map(validationData.warnings, mapItem).join('\n'),
             ''
         ] : null,
         validationData.info.length ? [
             prepareString('Info:', 'yellow'),
-            _.map(validationData.info, mapItem),
+            _.map(validationData.info, mapItem).join('\n'),
             ''
         ] : null,
         validationData.isValid ? prepareString('All correct', 'green') : null

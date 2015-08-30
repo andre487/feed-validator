@@ -1,12 +1,16 @@
 var Q = require('q');
 var Http = require('q-io/http');
-var feedValidator = require('../../providers/feed-validator');
 var _ = require('lodash');
 
 var data = require('./feed-validator.data');
 
 describe('providers/feed-validator', function () {
     var sandbox;
+    var feedValidator;
+
+    before(function () {
+        feedValidator = require('../../providers/feed-validator');
+    });
 
     beforeEach(function () {
         sandbox = sinon.sandbox.create();

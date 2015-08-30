@@ -18,8 +18,7 @@ module.exports = function suppress(validationData, options) {
     }
 
     var suppressRules = [].concat(options.suppress);
-
-    ['errors', 'warnings', 'info'].forEach(function (field) {
+    _.each(['errors', 'warnings', 'info'], function (field) {
         validationData[field] = _.filter(validationData[field], checkMessage);
     });
 

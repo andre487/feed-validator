@@ -3,6 +3,7 @@
  * Run validation by CLI
  */
 var Q = require('q');
+var _ = require('lodash');
 
 var getOptions = require('../actions/cli/get-options');
 var suppressMessages = require('../actions/suppress');
@@ -25,7 +26,7 @@ function main() {
 
             var pluginsResult = validateByPlugins(validationResult.feedJson, ctx.options);
             validationResult.isValid = validationResult.isValid && pluginsResult.isValid;
-            ['errors', 'warnings', 'info'].forEach(function (listName) {
+            _.each(['errors', 'warnings', 'info'], function (listName) {
                 [].push.apply(validationResult[listName], pluginsResult[listName]);
             });
 

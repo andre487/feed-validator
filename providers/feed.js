@@ -1,3 +1,7 @@
+/**
+ * @file
+ * Feed data provider
+ */
 var Q = require('q');
 var Http = require('q-io/http');
 var parseXml = require('xml2js').parseString;

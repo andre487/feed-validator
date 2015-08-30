@@ -2,11 +2,15 @@ var Q = require('q');
 var Http = require('q-io/http');
 var _ = require('lodash');
 
-var getFeed = require('../../providers/feed');
 var data = require('./feed.data.js');
 
 describe('providers/feed', function () {
     var sandbox;
+    var getFeed;
+
+    before(function () {
+        getFeed = require('../../providers/feed');
+    });
 
     beforeEach(function () {
         sandbox = sinon.sandbox.create();

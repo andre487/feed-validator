@@ -1,9 +1,9 @@
-var _ = require('lodash');
-
 /**
  * @file
  * Config example for Yandex opensearch.xml file
  */
+var _ = require('lodash');
+
 module.exports = {
     reporter: 'text',
     noColors: false,

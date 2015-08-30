@@ -23,8 +23,7 @@ module.exports = function suppress(validationData, options) {
         validationData[field] = _.filter(validationData[field], checkMessage);
     });
 
-    validationData.isValid = validationData.isValid ||
-        validationData.errors.length == 0 && validationData.warnings.length == 0;
+    validationData.isValid = validationData.isValid || validationData.errors.length == 0;
 
     function checkMessage(message) {
         var matchMessage = _.partial(matchRule, message);

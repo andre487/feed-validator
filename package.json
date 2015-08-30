@@ -2,7 +2,7 @@
   "author": "Andrey Prokopyuk <andrey.prokopyuk@gmail.com>",
   "name": "feed-validator",
   "description": "Simple validator for RSS, Atom or opensearch.xml that using validator.w3.org/feed and plugins",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "cli/run.js",
   "keywords": [
     "validation",
@@ -16,16 +16,23 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Andre-487/opensearch-validator.git"
+    "url": "git+https://github.com/Andre-487/feed-validator.git"
   },
   "bugs": {
-    "url": "https://github.com/Andre-487/opensearch-validator/issues"
+    "url": "https://github.com/Andre-487/feed-validator/issues"
   },
-  "homepage": "https://github.com/Andre-487/opensearch-validator#readme",
+  "homepage": "https://github.com/Andre-487/feed-validator#readme",
   "license": "MIT",
   "scripts": {
     "test": "cd test && mocha --recursive --reporter spec --require bootstrap.js ."
   },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "bin": {
+    "feed-validator": "./cli/run.js"
+  },
+  "preferGlobal": true,
   "dependencies": {
     "argparse": "^1.0.2",
     "cli-table": "^0.3.1",

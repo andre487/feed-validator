@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /**
  * @file
  * Run validation by CLI

@@ -11,9 +11,9 @@ npm install [-g] feed-validator
 
 ## Usage
 ```
-usage: opensearch-validator [-h] [-v] [-c FILE_PATH] [-r REPORTER_NAME]
-                            [--no-colors]
-                            url
+usage: feed-validator [-h] [-v] [-c FILE_PATH] [-r REPORTER_NAME]
+                      [--no-colors]
+                      url
 
 Simple validator for RSS, Atom or opensearch.xml that using validator.w3.
 org/feed and plugins

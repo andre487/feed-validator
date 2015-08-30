@@ -3,6 +3,7 @@
  * Text reporter
  */
 var Colors = require('colors/safe');
+var Table = require('cli-table');
 var _ = require('lodash');
 
 /**
@@ -18,15 +19,34 @@ module.exports = function textReporter(validationData, options) {
     function mapItem(item) {
         return [
             item.line ?
-                'At line: ' + item.line + ', column: ' + item.column :
-                'At path: ' + item.path,
-            item.type,
-            item.text
-        ].join('\t');
+            'At line: ' + item.line + ', column: ' + item.column :
+            'At path: ' + item.path,
+            String(item.type || 'CustomMessage'),
+            String(item.text || '')
+        ];
     }
 
     function prepareString(str, color) {
         return options.noColors ? str : Colors[color](str);
+    }
+
+    function createTable(items) {
+        var table = new Table({
+            chars: {
+                top: '', 'top-mid': '', 'top-left': '', 'top-right': '',
+                bottom: '', 'bottom-mid': '', 'bottom-left': '', 'bottom-right': '',
+                left: '', 'left-mid': '', mid: '', 'mid-mid': '',
+                right: '', 'right-mid': '', middle: ''
+            },
+            style: {
+                'padding-top': 0, 'padding-bottom': 0,
+                'padding-left': 2, 'padding-right': 2
+            }
+        });
+        _.each(items, function (item) {
+            table.push(item);
+        });
+        return table.toString();
     }
 
     return _([
@@ -36,17 +56,17 @@ module.exports = function textReporter(validationData, options) {
         '',
         validationData.errors.length ? [
             prepareString('Errors:', 'red'),
-            _.map(validationData.errors, mapItem).join('\n'),
+            createTable(_.map(validationData.errors, mapItem)),
             ''
         ] : null,
         validationData.warnings.length ? [
             prepareString('Warnings:', 'blue'),
-            _.map(validationData.warnings, mapItem).join('\n'),
+            createTable(_.map(validationData.warnings, mapItem)),
             ''
         ] : null,
         validationData.info.length ? [
             prepareString('Info:', 'yellow'),
-            _.map(validationData.info, mapItem).join('\n'),
+            createTable(_.map(validationData.info, mapItem)),
             ''
         ] : null,
         validationData.isValid ? prepareString('All correct', 'green') : null

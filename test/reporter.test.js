@@ -30,3 +30,24 @@ describe('reporter/type-text', function () {
         assert.notInclude(text, 'Info:');
     });
 });
+
+describe('reporter/json', function () {
+    var reporter;
+
+    before(function () {
+        reporter = getReporter('json');
+    });
+
+    it('should form correct json with invalid data', function () {
+        var text = reporter(data.invalidData);
+        var parsedJson = JSON.parse(text);
+
+        assert.property(parsedJson, 'isValid');
+        assert.property(parsedJson, 'feedXml');
+        assert.property(parsedJson, 'feedJson');
+
+        assert.property(parsedJson, 'errors');
+        assert.property(parsedJson, 'warnings');
+        assert.property(parsedJson, 'info');
+    });
+});

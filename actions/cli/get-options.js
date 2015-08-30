@@ -29,6 +29,14 @@ module.exports = function () {
         required: false,
         help: 'Config file path'
     });
+    parser.addArgument(['-r', '--reporter'], {
+        action: 'store',
+        metavar: 'REPORTER_NAME',
+        required: false,
+        defaultValue: 'text',
+        choices: ['text', 'json'],
+        help: 'Reporter name'
+    });
     parser.addArgument(['--no-colors'], {
         action: 'storeTrue',
         dest: 'noColors',

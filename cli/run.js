@@ -21,7 +21,7 @@ function main() {
             var ctx = data[0];
             var validationData = data[1];
 
-            var reporter = getReporter();
+            var reporter = getReporter(ctx.options.reporter);
             console.log(reporter(validationData, ctx.options));
         })
         .done();

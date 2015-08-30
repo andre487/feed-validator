@@ -58,6 +58,6 @@ module.exports = function () {
             if (!exists) {
                 thr('Config not found in path %s', args.config);
             }
-            return _.assign({}, args, require(configPath));
+            return _.assign({}, require(configPath), args);
         });
 };

@@ -29,6 +29,11 @@ module.exports = function () {
         required: false,
         help: 'Config file path'
     });
+    parser.addArgument(['--no-colors'], {
+        action: 'storeTrue',
+        dest: 'noColors',
+        help: 'Don\'t use colors'
+    });
     parser.addArgument(['url'], {
         action: 'store',
         help: 'Feed url to validate'

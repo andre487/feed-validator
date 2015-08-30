@@ -19,8 +19,8 @@ module.exports = function textReporter(validationData, options) {
     function mapItem(item) {
         return [
             item.line ?
-            'At line: ' + item.line + ', column: ' + item.column :
-            'At path: ' + item.path,
+                'At line: ' + item.line + ', column: ' + item.column :
+                'At path: ' + item.path,
             String(item.type || 'CustomMessage'),
             String(item.text || '')
         ];

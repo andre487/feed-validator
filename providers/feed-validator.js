@@ -68,7 +68,7 @@ feedValidator.extractSenseFromResponse = function (response) {
     function mapItem(item) {
         return _.transform(item, function (res, arr, name) {
             var val = arr[0];
-            if (/\d+/.test(val)) {
+            if (/^\d+$/.test(val)) {
                 val = Number(val);
             }
             res[name] = val;

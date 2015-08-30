@@ -24,6 +24,8 @@ function main() {
 
             var reporter = getReporter(ctx.options.reporter);
             console.log(reporter(validationData, ctx.options));
+
+            process.exit(validationData.isValid ? 0 : 1);
         })
         .done();
 }

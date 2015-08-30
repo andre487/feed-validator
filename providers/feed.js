@@ -4,11 +4,11 @@ var parseXml = require('xml2js').parseString;
 var thr = require('throw');
 
 /**
- * Get OpenSearch.xml from URL
+ * Get feed from URL
  * @param {String} url
- * @returns {Promise<Object>} OpenSearch JSON representation
+ * @returns {Promise<Object>} Feed JSON representation
  */
-module.exports = function openSearchProvider(url) {
+module.exports = function feedProvider(url) {
     return Http.read(url)
         .catch(function (err) {
             thr('Transport error: %s', err);

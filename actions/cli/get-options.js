@@ -18,9 +18,10 @@ var packageInfo = require('../../package.json');
  */
 module.exports = function () {
     var parser = new ArgumentParser({
+        prog: packageInfo.name,
+        description: packageInfo.description,
         version: packageInfo.version,
         addHelp: true,
-        description: packageInfo.description,
         epilog: 'Feed validator: Of Steamworks and Magick Obscura'
     });
     parser.addArgument(['-c', '--config'], {
@@ -35,7 +36,7 @@ module.exports = function () {
         required: false,
         defaultValue: 'text',
         choices: ['text', 'json'],
-        help: 'Reporter name'
+        help: 'Reporter name: text, json'
     });
     parser.addArgument(['--no-colors'], {
         action: 'storeTrue',

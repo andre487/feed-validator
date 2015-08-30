@@ -1,7 +1,7 @@
 {
   "author": "Andrey Prokopyuk <andrey.prokopyuk@gmail.com>",
-  "name": "opensearch-validator",
-  "description": "Simple validator for opensearch.xml that using validator.w3.org/feed",
+  "name": "feed-validator",
+  "description": "Simple validator for RSS, Atom or opensearch.xml that using validator.w3.org/feed and plugins",
   "version": "1.0.0",
   "main": "cli/run.js",
   "keywords": [
@@ -11,7 +11,8 @@
     "RSS",
     "Atom",
     "OpenSearch",
-    "opensearch.xml"
+    "opensearch.xml",
+    "plugins"
   ],
   "repository": {
     "type": "git",

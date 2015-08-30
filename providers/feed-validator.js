@@ -21,7 +21,7 @@ var feedValidator = module.exports = function feedValidator(dataJson) {
     var xml = feedValidator.stringifyXml(dataJson);
     return feedValidator.makeValidationRequest(xml)
         .then(function (resp) {
-            return _.assign({xml: xml}, feedValidator.extractSenseFromResponse(resp));
+            return _.assign({feedXml: xml}, feedValidator.extractSenseFromResponse(resp));
         });
 };
 

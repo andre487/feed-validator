@@ -11,9 +11,18 @@ var _ = require('lodash');
 
 var VALIDATOR_URL = 'http://validator.w3.org/feed/check.cgi';
 
+/**
+ * Validate feed by validator.w3.org/feed
+ * @type {Function}
+ * @param {Object} dataJson Feed JSON representation
+ * @returns {Promise<Object>} Validation result
+ */
 var feedValidator = module.exports = function feedValidator(dataJson) {
     var xml = feedValidator.stringifyXml(dataJson);
-    return feedValidator.makeValidationRequest(xml);
+    return feedValidator.makeValidationRequest(xml)
+        .then(function (resp) {
+            return _.assign({xml: xml}, feedValidator.extractSenseFromResponse(resp));
+        });
 };
 
 /**

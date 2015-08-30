@@ -16,6 +16,19 @@ describe('providers/feed-validator', function () {
         sandbox.restore();
     });
 
+    it('should return correct structure', function () {
+        useFakeValidatorResponse();
+
+        feedValidator(data.dataJson)
+            .then(function (data) {
+                assert.property(data, 'xml');
+                assert.property(data, 'isValid');
+                assert.property(data, 'errors');
+                assert.property(data, 'warnings');
+                assert.property(data, 'info');
+            });
+    });
+
     describe('#stringifyXml()', function () {
         it('should stringify correct data', function () {
             var res = feedValidator.stringifyXml(data.dataJson);

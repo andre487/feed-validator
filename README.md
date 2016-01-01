@@ -6,6 +6,7 @@ Supports plugins for custom checks
 
 [![Build Status](https://travis-ci.org/Andre-487/feed-validator.svg?branch=master)](https://travis-ci.org/Andre-487/feed-validator)
 [![Code Climate](https://codeclimate.com/github/Andre-487/feed-validator/badges/gpa.svg)](https://codeclimate.com/github/Andre-487/feed-validator)
+[![bitHound Overall Score](https://www.bithound.io/github/andre487/feed-validator/badges/score.svg)](https://www.bithound.io/github/andre487/feed-validator)
 [![npm version](https://badge.fury.io/js/feed-validator.svg)](http://badge.fury.io/js/feed-validator)
 
 ## Installation

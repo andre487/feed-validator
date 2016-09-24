@@ -96,3 +96,20 @@ function checkHttps(feedJson, options) {
 }
 ```
 You should define `level` and `text` fields. And you can define your own custom `type` field. 
+
+### Use feed-validator programmatically
+
+```js
+var feedValidator = require('feed-validator');
+var options = {
+    url: 'https://www.rt.com/rss/',
+    suppress: [
+        {level: 'error', type: 'InvalidURLAttribute'},
+        {level: 'warning', type: 'SelfDoesntMatchLocation'}
+    ]
+};
+
+feedValidator.validate(options, function(data){
+    console.log(data)
+});
+```

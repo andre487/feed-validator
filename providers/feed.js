@@ -15,17 +15,16 @@ module.exports = function feedProvider(url) {
     var deferred = Q.defer();
     Http.read(url)
         .catch(function (err) {
-            return deferred.reject(new Error('Transport error: %s', err));
+            return deferred.reject(new Error('Transport error: ' + err));
         })
         .then(function (res) {
             parseXml(res.toString(), function (err, result) {
-                if(err) return deferred.reject(err);
+                if(err) return deferred.reject(new Error('Parse error:\n' + err));
                 return deferred.resolve(result);
             });
         })
         .catch(function (err) {
-            return deferred.reject(new Error('Parse error:\n%s', err));
+            return deferred.reject(new Error('Parse error:\n' + err));
         });
     return deferred.promise;
 };
-

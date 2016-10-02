@@ -18,7 +18,9 @@ module.exports = function feedProvider(url) {
             deferred.reject(new Error('Transport error: %s', err));
         })
         .then(function (res) {
-            deferred.resolve(parseXml(res.toString()));
+            parseXml(res.toString(), function (err, result) {
+                deferred.resolve(result);
+            });
         })
         .catch(function (err) {
             deferred.reject(new Error('Parse error:\n%s', err));

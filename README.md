@@ -34,6 +34,7 @@ Optional arguments:
   -r REPORTER_NAME, --reporter REPORTER_NAME
                         Reporter name: text, json
   --no-colors           Don't use colors
+  --no-showfeed         Don't show the feed content
 ```
 
 ## Arguments and options
@@ -50,6 +51,9 @@ Reporter type: text or JSON. Can be defined in command line: `--reporter json` o
 
 ### noColors
 Don't use colors in report. Can be passed from command line: `--no-colors` and from config file: `noColors: true`.
+
+### noShowFeed
+Don't show the feed's xml content in the report. Can be passed from command line: `--no-showfeed` and from config file: `noShowFeed: true`.
 
 ### suppress
 You can suppress some messages by defining objects that contains fields to match in config file. 

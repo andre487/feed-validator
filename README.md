@@ -1,5 +1,5 @@
 # Feed validator
-Simple validator for feeds like RSS or Atom. Supports opensearch.xml validation. 
+Simple validator for feeds like RSS or Atom. Supports opensearch.xml validation.
 Based on validator.w3.org/feed
 
 Supports plugins for custom checks
@@ -24,7 +24,7 @@ Simple validator for RSS, Atom or opensearch.xml that using validator.w3.
 org/feed and plugins
 
 Positional arguments:
-  url                   Feed url to validate
+  url                   Feed url or file-path to validate
 
 Optional arguments:
   -h, --help            Show this help message and exit.
@@ -41,7 +41,7 @@ Optional arguments:
 Options can be defined by command line and configuration file.
 
 ### url
-URL of the validated feed.
+URL or file-path of the validated feed.
 
 ### config
 Configuration file. Can be passed from command line. Example of config file see in `examples` folder.
@@ -56,7 +56,7 @@ Don't use colors in report. Can be passed from command line: `--no-colors` and f
 Don't show the feed's xml content in the report. Can be passed from command line: `--no-showfeed` and from config file: `noShowFeed: true`.
 
 ### suppress
-You can suppress some messages by defining objects that contains fields to match in config file. 
+You can suppress some messages by defining objects that contains fields to match in config file.
 Example of suppressing:
 ```js
 suppress: [
@@ -66,9 +66,9 @@ suppress: [
 ```
 
 ### plugins
-Can be defined in config file (see `examples`). Each plugin is function that take JSON feed representation and returns errors, 
+Can be defined in config file (see `examples`). Each plugin is function that take JSON feed representation and returns errors,
 warnings and information messages list.
- 
+
 Plugin function example:
 ```js
 /**
@@ -99,4 +99,4 @@ function checkHttps(feedJson, options) {
     return errors;
 }
 ```
-You should define `level` and `text` fields. And you can define your own custom `type` field. 
+You should define `level` and `text` fields. And you can define your own custom `type` field.

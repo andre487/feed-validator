@@ -37,10 +37,12 @@
     "argparse": "^1.0.2",
     "cli-table": "^0.3.1",
     "colors": "^1.1.2",
+    "fs-readfile-promise": "^3.0.0",
     "lodash": "^3.10.1",
     "q": "^1.4.1",
     "q-io": "^1.13.1",
     "throw": "^1.0.0",
+    "valid-url": "^1.0.9",
     "xml2js": "^0.4.10"
   },
   "devDependencies": {

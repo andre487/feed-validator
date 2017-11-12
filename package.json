@@ -27,7 +27,7 @@
     "test": "cd test && mocha --recursive --reporter spec --require bootstrap.js ."
   },
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 6.0.0"
   },
   "bin": {
     "feed-validator": "./cli/run.js"

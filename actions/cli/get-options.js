@@ -43,6 +43,11 @@ module.exports = function () {
         dest: 'noColors',
         help: 'Don\'t use colors'
     });
+    parser.addArgument(['--no-showfeed'], {
+        action: 'storeTrue',
+        dest: 'noShowFeed',
+        help: 'Don\'t show the full feed'
+    });
     parser.addArgument(['url'], {
         action: 'store',
         help: 'Feed url to validate'

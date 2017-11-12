@@ -11,6 +11,7 @@ var _ = require('lodash');
  * @param {Object} validationData
  * @param {Object} [options]
  * @param {Boolean} options.noColors
+  * @param {Boolean} options.noShowFeed
  * @returns {String}
  */
 module.exports = function textReporter(validationData, options) {
@@ -51,9 +52,12 @@ module.exports = function textReporter(validationData, options) {
 
     return _([
         prepareString('Validation results', 'magenta'),
-        prepareString('Feed:', 'green'),
-        validationData.feedXml,
         '',
+        !options.noShowFeed ? [
+            prepareString('Feed:', 'green'),
+            validationData.feedXml,
+            ''
+        ] : null,
         validationData.errors.length ? [
             prepareString('Errors:', 'red'),
             createTable(_.map(validationData.errors, mapItem)),

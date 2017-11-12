@@ -2,7 +2,7 @@
   "author": "Andrey Prokopyuk <andrey.prokopyuk@gmail.com>",
   "name": "feed-validator",
   "description": "Simple validator for RSS, Atom or opensearch.xml that using validator.w3.org/feed and plugins",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "cli/run.js",
   "keywords": [
     "validation",
